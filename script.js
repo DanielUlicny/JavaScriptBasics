@@ -1,59 +1,36 @@
-function outer(a) {
-  // This function returns another function
-  function inner(b) {
-    console.log(a); // From outer scope (outer function)
-    console.log(b); // From current scope (inner function)
+// VAR
+
+function func() {
+  {
+    var a = 1; // Function scope
   }
-
-  return inner; // Return the inner function
+  console.log(a); // Prints 1
 }
+func();
 
-// Create a new function by calling outer
-const newFunc = outer(1);
-
-// Call the returned function
-newFunc(2);
-// Output:
-// 1
-// 2
-
-// INTERVIEW QUESTION
-function outer(x) {
-  function inner(y) {
-    console.log(x + y);
-  }
-  return inner;
+//Funkcia to vidi takto kvôli function scope
+function func() {
+  var a = 1; // Function scope
+  console.log(a); // Prints 1
 }
+func();
 
-const addFive = outer(5);
-addFive(3); // What does this print? 8
+// Hoisting
+console.log(a); // Prints undefined
+var a = 1;
+console.log(a); // 1
 
-// Practice Exercise
-// Create a function called createGreeter that:
+// JavaScript treats this as if you wrote:
+var a;
+console.log(a); // Prints undefined
+a = 1; // Assignment happens here
+console.log(a); // 1
 
-// Takes a greeting parameter (like "Hello" or "Hi")
-// Returns a function that takes a name parameter
-// The returned function should log the greeting + name
+// Znovu pouzitie:
+var a = 1;
+var a = 2; // No error - just overwrites the first one
+console.log(a); // 2
 
-function greeting(a) {
-  function name(b) {
-    console.log(a + b);
-  }
-  return name;
-}
-const fullGreeting = greeting("Hello ");
-fullGreeting("Daniel");
-
-// OR
-
-function createGreeter(greeting) {
-  return (name) => {
-    console.log(greeting + " " + name);
-  };
-}
-
-const sayHello = createGreeter("Hello");
-const sayHi = createGreeter("Hi");
-
-sayHello("Kyle"); // "Hello Kyle"
-sayHi("Sarah"); // "Hi Sarah"
+// Pri let:
+let b = 1;
+let b = 2; // ❌ SyntaxError: Identifier 'b' has already been declared
