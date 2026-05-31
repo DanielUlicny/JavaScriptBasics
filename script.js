@@ -26,5 +26,34 @@ function outer(x) {
 }
 
 const addFive = outer(5);
-addFive(3); // What does this print?
-// 8
+addFive(3); // What does this print? 8
+
+// Practice Exercise
+// Create a function called createGreeter that:
+
+// Takes a greeting parameter (like "Hello" or "Hi")
+// Returns a function that takes a name parameter
+// The returned function should log the greeting + name
+
+function greeting(a) {
+  function name(b) {
+    console.log(a + b);
+  }
+  return name;
+}
+const fullGreeting = greeting("Hello ");
+fullGreeting("Daniel");
+
+// OR
+
+function createGreeter(greeting) {
+  return (name) => {
+    console.log(greeting + " " + name);
+  };
+}
+
+const sayHello = createGreeter("Hello");
+const sayHi = createGreeter("Hi");
+
+sayHello("Kyle"); // "Hello Kyle"
+sayHi("Sarah"); // "Hi Sarah"
